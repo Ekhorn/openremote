@@ -51,6 +51,15 @@ runs:
         deployEnvironment = None
         eventConfig = ()
 
+        print(eventName)
+        print(refName)
+        print(refType)
+        print(repoOwner)
+        print(isMainRepo)
+        print(isRelease)
+        print(managerVersion)
+        print(version)
+
         f = open(".ci_cd/ci_cd.json")
         data = json.load(f)
         f.close()
