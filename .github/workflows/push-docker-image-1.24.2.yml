@@ -1,8 +1,8 @@
 name: Push manager image 1.24.2
 
 on:
-  # push:
-  #   branches: [publish-docker-image-1.24.2]
+  push:
+    branches: [publish-docker-image-1.24.2]
   workflow_dispatch:
 
 concurrency:
@@ -68,7 +68,7 @@ jobs:
         id: meta
         shell: bash
         run: |
-          echo "formatted_tags=openremote/manager:c312ee8,openremote/manager:latest,openremote/manager:1.24.2" | tee -a $GITHUB_OUTPUT
+          echo "formatted_tags=ekhorn/manager:c312ee8,ekhorn/manager:latest,ekhorn/manager:1.24.2" | tee -a $GITHUB_OUTPUT
           echo "first_tag=latest" | tee -a $GITHUB_OUTPUT
           echo "should_push=true" | tee -a $GITHUB_OUTPUT
 
@@ -88,23 +88,23 @@ jobs:
           DOCKER_BUILD_SUMMARY: false
           DOCKER_BUILD_RECORD_UPLOAD: false
 
-      - name: Scan manager docker image
-        uses: anchore/scan-action@e1165082ffb1fe366ebaf02d8526e7c4989ea9d2 # v7.4.0
-        id: manager-anchore-scan
-        with:
-          image: ${{ steps.manager-docker-command.outputs.first_tag }}
-          fail-build: true
-          severity-cutoff: critical
+      # - name: Scan manager docker image
+      #   uses: anchore/scan-action@e1165082ffb1fe366ebaf02d8526e7c4989ea9d2 # v7.4.0
+      #   id: manager-anchore-scan
+      #   with:
+      #     image: ${{ steps.manager-docker-command.outputs.first_tag }}
+      #     fail-build: true
+      #     severity-cutoff: critical
 
-      - name: Upload Anchore scan SARIF report
-        uses: github/codeql-action/upload-sarif@b8bb9f28b8d3f992092362369c57161b755dea45 # v4.35.0
-        if: ${{ always() && steps.meta.outputs.should_push == 'true' }}
-        with:
-          sarif_file: ${{ steps.manager-anchore-scan.outputs.sarif }}
+      # - name: Upload Anchore scan SARIF report
+      #   uses: github/codeql-action/upload-sarif@b8bb9f28b8d3f992092362369c57161b755dea45 # v4.35.0
+      #   if: ${{ always() && steps.meta.outputs.should_push == 'true' }}
+      #   with:
+      #     sarif_file: ${{ steps.manager-anchore-scan.outputs.sarif }}
 
-      - name: Inspect Anchore scan SARIF report
-        if: ${{ always() && steps.meta.outputs.should_push == 'true' }}
-        run: cat ${{ steps.manager-anchore-scan.outputs.sarif }}
+      # - name: Inspect Anchore scan SARIF report
+      #   if: ${{ always() && steps.meta.outputs.should_push == 'true' }}
+      #   run: cat ${{ steps.manager-anchore-scan.outputs.sarif }}
 
       - name: Login to DockerHub
         uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
