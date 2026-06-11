@@ -114,7 +114,7 @@ java {
 publishing {
     publications {
         maven(MavenPublication) {
-            group = "io.openremote"
+            group = "io.github.ekhorn"
             artifactId = "openremote-${project.name}"
             from components.java
             pom {

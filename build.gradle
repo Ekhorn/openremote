@@ -215,7 +215,7 @@ nexusPublishing {
         }
     }
 }
-group = 'io.openremote'
+group = 'io.github.ekhorn'
 
 tasks.register('checkFilesGitIgnoredNew', Exec) {
     // The provided checkFilesGitIgnored task doesn't work on Windows so here's one that does

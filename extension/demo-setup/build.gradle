@@ -27,7 +27,7 @@ java {
 publishing {
     publications {
         maven(MavenPublication) {
-            group = "io.openremote.extension"
+            group = "io.github.ekhorn.extension"
             artifactId = "openremote-${project.name}"
             from components.java
             pom {
