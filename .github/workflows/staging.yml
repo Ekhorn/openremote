@@ -74,7 +74,7 @@ jobs:
 
       - name: Process ci_cd.json file
         id: ci-cd-output
-        uses: openremote/openremote/.github/actions/process-cicd-json@fa6f52032b1dea3d4ad080cc6436a3ef3843b0be
+        uses: Ekhorn/openremote/.github/actions/process-cicd-json@c7c91f0aa88f2174a8f6205c8d79056a44099e63
         with:
           IS_MAIN_REPO: ${{ steps.is_main_repo.outputs.value }} # Shouldn't be needed in this context
           MANAGER_VERSION: ${{ steps.is_main_repo.outputs.version }}
