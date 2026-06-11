@@ -6,7 +6,7 @@
 				"npm": "$version-snapshot"
 			},
 			"deploy": {
-				"managerTag": "develop",
+				"managerTag": "develop,test1, test2",
 				"environment": "staging"
 			}
 		}
