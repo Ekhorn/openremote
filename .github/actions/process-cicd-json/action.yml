@@ -57,6 +57,15 @@ runs:
         deployEnvironment = None
         eventConfig = ()
 
+        print(eventName)
+        print(refName)
+        print(refType)
+        print(repoOwner)
+        print(isMainRepo)
+        print(isRelease)
+        print(managerVersion)
+        print(version)
+
         f = open(".ci_cd/ci_cd.json")
         data = json.load(f)
         f.close()
@@ -69,6 +78,8 @@ runs:
 
         if eventName == "push" and refType == "branch" and refName in eventConfig:
           eventConfig = eventConfig[refName]
+
+        print(eventConfig)
 
         if eventConfig is not None:
           deploys = eventConfig['deploy'] if 'deploy' in eventConfig else None
